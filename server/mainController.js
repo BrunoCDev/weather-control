@@ -7,7 +7,7 @@ const { apiKey } = require("./config");
 const getCurrentWeatherLondon = (req, res, next) => {
   axios
     .get(
-      `http://api.openweathermap.org/data/2.5/weather?q=London&APPID=${apiKey}`
+      `http://api.openweathermap.org/data/2.5/forecast?q=London&APPID=${apiKey}`
     )
     .then(response => res.status(200).json(response.data))
     .catch(console.log);
