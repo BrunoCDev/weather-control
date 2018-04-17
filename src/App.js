@@ -8,12 +8,7 @@ class App extends Component {
     this.state = {
       list: null,
       city: null,
-      test: false
-      // data: {},
-      // date: null,
-      // temp: {},
-      // icon: "",
-      // description: "",
+      loading: true
     };
   }
 
@@ -25,13 +20,8 @@ class App extends Component {
         this.setState({
           city: data.city,
           list: data.list,
-          test: true
-          // data: data,
-          // date: new Date(data.dt * 1000),
-          // temp: data.main,
-          // icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
-          // description: data.weather[0].description,
-          // city: data.name,
+          day: "",
+          loading: false
         });
       })
       .catch(console.log);
@@ -41,28 +31,28 @@ class App extends Component {
     console.log(this.state);
     return (
       <div className="App">
-        {this.state.test ? (
+        {!this.state.loading ? (
           <div>
-            <div>
-              <p>
-                {this.state.city.name}, {this.state.city.country}
-              </p>
+            <p>
+              {this.state.city.name}, {this.state.city.country}
+            </p>
+            <div className="main-container">
+              {this.state.list.map((el, i) => {
+                return (
+                  <div key={i}>
+                    <p>{el.dt_txt}</p>
+                    <p>{el.weather[0].description}</p>
+                    <p>{Math.round(el.main.temp - 273.15)}°C </p>
+                    <img
+                      src={`http://openweathermap.org/img/w/${
+                        el.weather[0].icon
+                      }.png`}
+                      alt={el.weather[0].main}
+                    />
+                  </div>
+                );
+              })}
             </div>
-            {this.state.list.map((el, i) => {
-              return (
-                <div key={i}>
-                  <p>{el.dt_txt}</p>
-                  <p>{el.weather[0].description}</p>
-                  <p>{Math.round(el.main.temp - 273.15)}°C </p>
-                  <img
-                    src={`http://openweathermap.org/img/w/${
-                      el.weather[0].icon
-                    }.png`}
-                    alt={el.weather[0].main}
-                  />
-                </div>
-              );
-            })}
           </div>
         ) : null}
       </div>
