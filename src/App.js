@@ -2,33 +2,60 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 import ScrollArea from "react-scrollbar";
+import moment from "moment";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      list: null,
-      city: null,
+      city: "London",
+      date: {},
       loading: true
     };
+    this.parseWeatherInformation = this.parseWeatherInformation.bind(this);
   }
 
   componentDidMount() {
     axios
-      .get("http://localhost:3005/api/get/london")
+      .post("http://localhost:3005/api/get/london", { city: this.state.city })
       .then(response => {
         const { data } = response;
+        this.parseWeatherInformation(data);
         this.setState({
           city: data.city,
-          list: data.list,
-          day: "",
           loading: false
         });
       })
       .catch(console.log);
   }
 
+  parseWeatherInformation(data) {
+    data.list.map((info, i) => {
+      if (data.list.length - 1 !== i) {
+        const date = info.dt_txt.split(" ");
+        if (i === 0) {
+          this.setState({
+            date: [{ info, weekDay: moment(date[0]).day() }]
+          });
+        } else {
+          if (this.state.date.length !== 4) {
+            const lastDate = this.state.date[0].info.dt_txt.split(" ");
+            if (date[1] === lastDate[1]) {
+              this.setState(prevState => ({
+                date: [
+                  ...prevState.date,
+                  { info, weekDay: moment(date[0]).day() }
+                ]
+              }));
+            }
+          }
+        }
+      }
+    });
+  }
+
   render() {
+    const { city } = this.state;
     console.log(this.state);
     return (
       <div className="App">
@@ -36,7 +63,7 @@ class App extends Component {
           <div className="main-container">
             <div className="title-container">
               <strong className="title">
-                {this.state.city.name}, {this.state.city.country}
+                {city.name}, {city.country}
               </strong>
             </div>
             <ScrollArea
@@ -45,34 +72,25 @@ class App extends Component {
               speed={0.8}
               vertical={false}
             >
-              {this.state.list.map((el, i) => {
+              {this.state.date.map((info, i) => {
+                const el = info.info;
                 const date = el.dt_txt.split(" ");
                 const time = date[1].slice(0, 5);
                 return (
                   <div key={i} className="instance-container">
-                    <div className="date-container">
-                      <p className="date">{date[0]}</p>
-                    </div>
-                    <div className="time-container">
-                      <p className="time"> {time}</p>
-                    </div>
-                    <div className="description-container">
-                      <p className="description">{el.weather[0].description}</p>
-                    </div>
-                    <div className="temp-container">
-                      <p className="temp">
-                        {Math.round(el.main.temp - 273.15)}°C{" "}
-                      </p>
-                    </div>
-                    <div className="icon-container">
-                      <img
-                        className="icon"
-                        src={`http://openweathermap.org/img/w/${
-                          el.weather[0].icon
-                        }.png`}
-                        alt={el.weather[0].main}
-                      />
-                    </div>
+                    <p className="date">{date[0]}</p>
+                    <p className="time"> {time}</p>
+                    <img
+                      className="icon"
+                      src={`http://openweathermap.org/img/w/${
+                        el.weather[0].icon
+                      }.png`}
+                      alt={el.weather[0].main}
+                    />
+                    <p className="description">{el.weather[0].description}</p>
+                    <p className="temp">
+                      {Math.round(el.main.temp - 273.15)}°C{" "}
+                    </p>
                   </div>
                 );
               })}
