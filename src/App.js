@@ -10,7 +10,16 @@ class App extends Component {
     this.state = {
       city: "London",
       date: {},
-      loading: true
+      loading: true,
+      week: [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ]
     };
     this.parseWeatherInformation = this.parseWeatherInformation.bind(this);
   }
@@ -55,7 +64,7 @@ class App extends Component {
   }
 
   render() {
-    const { city } = this.state;
+    const { city, week } = this.state;
     console.log(this.state);
     return (
       <div className="App">
@@ -78,7 +87,7 @@ class App extends Component {
                 const time = date[1].slice(0, 5);
                 return (
                   <div key={i} className="instance-container">
-                    <p className="date">{date[0]}</p>
+                    <p className="date">{week[info.weekDay]}</p>
                     <p className="time"> {time}</p>
                     <img
                       className="icon"
