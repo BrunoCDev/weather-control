@@ -18,13 +18,14 @@ class Weather extends Component {
     };
     this.changeColor = this.changeColor.bind(this);
     this.parseDescription = this.parseDescription.bind(this);
+    this.parseTemp = this.parseTemp.bind(this);
   }
 
   componentDidMount() {
     this.setState({ loading: false });
   }
 
-  // Changes the <div> color to create pattern
+  // Changes the <div> color to create pattern.
   changeColor(i, str) {
     if (i % 2 === 0 && str === "header") {
       return "#282936";
@@ -39,7 +40,7 @@ class Weather extends Component {
     }
   }
 
-  // Uppercases the first letter of the description
+  // Uppercases the first letter of the description.
   parseDescription(description) {
     description = description.split(" ");
     const result = [];
@@ -49,18 +50,30 @@ class Weather extends Component {
     return result.join(" ");
   }
 
+  // Converts temperature received by API (Kelvin) to Celsius or Fahrenheit.
+  parseTemp(temp, str) {
+    if (str === "C") {
+      return `${Math.round(temp - 273.15)}°C`;
+    }
+    if (str === "F") {
+      return `${Math.round((temp - 273.15) * 1.8 + 32)}°F`;
+    }
+  }
+
   render() {
-    // Object destructuring for shorthand
+    // Object destructuring for shorthand.
     const data = this.props.data;
     const { icon, description } = data.info.weather[0];
     const { temp } = data.info.main;
     const { week, loading } = this.state;
     const { index } = this.props;
 
-    // Gets the day number
+    // Gets the day number.
     const date = data.info.dt_txt.split(" ");
     const day = date[0].split("-");
 
+    // Conditional Render so the component changes the displayed information after
+    // the information changes.
     return !loading ? (
       <div
         className="weather-container"
@@ -93,12 +106,10 @@ class Weather extends Component {
             </p>
           </div>
           <div>
-            <p className="temp-cel">{Math.round(temp - 273.15)}°C</p>
+            <p className="temp-cel">{this.parseTemp(temp, "C")}</p>
           </div>
           <div className="temp-fel-container">
-            <p className="temp-fel">
-              {Math.round((temp - 273.15) * 1.8 + 32)}°F
-            </p>
+            <p className="temp-fel">{this.parseTemp(temp, "F")}</p>
           </div>
         </div>
       </div>

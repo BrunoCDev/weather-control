@@ -16,7 +16,7 @@ app.use(cors());
 app.use(json());
 app.use("/", express.static(__dirname));
 
-app.post("/api/get/weather", mc.getCurrentWeatherLondon);
+app.get("/api/get/:city", mc.getCurrentWeatherLondon);
 
 // Test if the server is running
 app.listen(port, function() {

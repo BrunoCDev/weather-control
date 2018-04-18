@@ -5,7 +5,7 @@ const axios = require("axios");
 const { apiKey } = require("./config");
 
 const getCurrentWeatherLondon = (req, res, next) => {
-  const { city } = req.body;
+  const { city } = req.params;
   axios
     .get(
       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}`

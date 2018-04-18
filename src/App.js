@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+
 import axios from "axios";
 import moment from "moment";
 
@@ -9,7 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      date: {},
+      data: {},
       city: "",
       citySearch: "",
       loading: true
@@ -18,15 +19,18 @@ class App extends Component {
     this.getWeather = this.getWeather.bind(this);
   }
 
+  // By Default will load Weather information from London.
   componentDidMount() {
     this.getWeather("London");
   }
 
+  // Method that takes in a city name and makes an API call to get the information
+  // from that specific city.
   getWeather(city) {
     this.setState({ citySearch: "" });
     if (city) {
       axios
-        .post("http://localhost:3005/api/get/weather", { city })
+        .get(`http://localhost:3005/api/get/${city}`)
         .then(response => {
           const { data } = response;
           this.parseWeatherInformation(data);
@@ -37,27 +41,29 @@ class App extends Component {
         })
         .catch(error => {
           console.log(error);
-          alert("City not found!");
+          alert("Please provide a valid city!");
         });
     }
   }
 
-  parseWeatherInformation(data) {
-    data.list.map((info, i) => {
-      if (data.list.length - 1 !== i) {
-        const date = info.dt_txt.split(" ");
+  // Parses the information into the "data" object in state
+  // so the information is seperated by day.
+  parseWeatherInformation(response) {
+    response.list.map((info, i) => {
+      if (response.list.length - 1 !== i) {
+        const data = info.dt_txt.split(" ");
         if (i === 0) {
           this.setState({
-            date: [{ info, weekDay: moment(date[0]).day() }]
+            data: [{ info, weekDay: moment(data[0]).day() }]
           });
         } else {
-          if (this.state.date.length !== 4) {
-            const lastDate = this.state.date[0].info.dt_txt.split(" ");
-            if (date[1] === lastDate[1]) {
+          if (this.state.data.length !== 4) {
+            const lastData = this.state.data[0].info.dt_txt.split(" ");
+            if (data[1] === lastData[1]) {
               this.setState(prevState => ({
-                date: [
-                  ...prevState.date,
-                  { info, weekDay: moment(date[0]).day() }
+                data: [
+                  ...prevState.data,
+                  { info, weekDay: moment(data[0]).day() }
                 ]
               }));
             }
@@ -67,36 +73,38 @@ class App extends Component {
     });
   }
 
-  handleKeyPress(event) {
-    if (event.key === "Enter") {
+  // Enables the user to press Enter instead of having to click "Find".
+  handleKeyPress(e) {
+    if (e.key === "Enter") {
       this.getWeather(this.state.citySearch);
     }
   }
 
   render() {
-    const { city } = this.state;
+    // Object destructuring for shorthand.
+    const { city, citySearch, data, loading } = this.state;
     return (
       <div className="App">
-        {!this.state.loading ? (
+        {!loading ? (
           <div className="main-container">
             <div className="title-container">
               <input
                 className="input"
                 type="text"
-                value={this.state.citySearch}
+                value={citySearch}
                 placeholder={`${city.name}, ${city.country}`}
                 onChange={e => this.setState({ citySearch: e.target.value })}
                 onKeyPress={e => this.handleKeyPress(e)}
               />
               <button
                 className="button"
-                onClick={() => this.getWeather(this.state.citySearch)}
+                onClick={() => this.getWeather(citySearch)}
               >
                 Find
               </button>
             </div>
             <div className="component-container">
-              {this.state.date.map((el, i) => {
+              {data.map((el, i) => {
                 return <Weather key={i} data={el} index={i} />;
               })}
             </div>
