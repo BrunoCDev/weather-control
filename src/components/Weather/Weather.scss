@@ -1,47 +1,150 @@
+@function get-vw($target) {
+  $vw-context: (1000 * 0.01) * 1px;
+  @return ($target/$vw-context) * 1vw;
+}
+
+@function get-vh($target) {
+  $vh-context: (1000 * 0.01) * 1px;
+  @return ($target/$vh-context) * 1vh;
+}
+
 .weather-container {
-  width: 100%;
-  height: 100%;
+  @media (min-width: 300px) {
+    height: 160px;
+    width: 250px;
+  }
+  @media (min-width: 550px) {
+    height: 230px;
+    width: 25%;
+  }
+  @media (min-width: 800px) {
+    height: 400px;
+    width: 180px;
+  }
+  width: get-vw(200px);
+  height: get-vh(320px);
 }
 
 .weather-header {
-  height: 10%;
-  width: 100%;
+  @media (min-width: 300px) {
+    height: 30px;
+    width: 62px;
+  }
+  @media (min-width: 550px) {
+    height: 50px;
+    width: 120px;
+  }
+  @media (min-width: 800px) {
+    height: 60px;
+    width: 180px;
+  }
+  height: get-vh(35px);
+  width: get-vw(200px);
 }
 
 .weekday-text {
   color: #adb9c1;
-  font-size: 100%;
+  @media (min-width: 300px) {
+    height: 30px;
+    font-size: 10px;
+    line-height: 30px;
+  }
+  @media (min-width: 550px) {
+    height: 50px;
+    width: 125px;
+    font-size: 15px;
+    line-height: 50px;
+  }
+  @media (min-width: 800px) {
+    height: 60px;
+    font-size: 20px;
+    line-height: 60px;
+  }
+  font-weight: bold;
+  letter-spacing: 0.5px;
   text-align: center;
   vertical-align: middle;
-  line-height: 0%;
+  margin: 0px;
 }
 
 .weather-body {
-  height: 84%;
+  @media (min-width: 300px) {
+    height: 130px;
+  }
+  @media (min-width: 550px) {
+    height: 230px;
+  }
+  @media (min-width: 800px) {
+    height: 340px;
+  }
+  height: get-vh(275px);
   width: 100%;
   text-align: center;
   vertical-align: middle;
 }
 
 .icon {
-  width: 60%;
-  height: 70px;
+  @media (min-width: 300px) {
+    width: 40px;
+  }
+  @media (min-width: 550px) {
+    width: 90px;
+  }
+  @media (min-width: 800px) {
+    width: 150px;
+  }
+  width: get-vw(150px);
+  height: auto;
 }
 
 .description-text {
   color: #ffffff;
-  font-size: 65%;
+  @media (min-width: 300px) {
+    height: 12px;
+    font-size: 9px;
+  }
+  @media (min-width: 550px) {
+    height: 20px;
+    font-size: 15px;
+  }
+  @media (min-width: 800px) {
+    height: 20px;
+    font-size: 22px;
+  }
+  width: 100%;
+  height: get-vh(20px);
+  font-size: get-vw(30px);
+  letter-spacing: 0.7px;
 }
 
 .temp-cel {
   color: #ffffff;
-  font-weight: bold;
-  font-size: 80%;
+  @media (min-width: 300px) {
+    font-size: 15px;
+  }
+  @media (min-width: 550px) {
+    font-size: 20px;
+  }
+  @media (min-width: 800px) {
+    font-size: 30px;
+  }
+  font-size: get-vw(50px);
+  letter-spacing: 1.5px;
 }
 
 .temp-fel {
   color: #ffffff;
   text-align: center;
-  font-size: 70%;
-  line-height: 0%;
+  @media (min-width: 300px) {
+    font-size: 9px;
+  }
+  @media (min-width: 550px) {
+    font-size: 15px;
+  }
+  @media (min-width: 800px) {
+    font-size: 20px;
+  }
+  font-size: get-vw(30px);
+  line-height: 0px;
+  letter-spacing: 0.5px;
 }

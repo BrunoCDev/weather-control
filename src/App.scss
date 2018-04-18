@@ -1,14 +1,41 @@
+@function get-vw($target) {
+  $vw-context: (1000 * 0.01) * 1px;
+  @return ($target/$vw-context) * 1vw;
+}
+
+@function get-vh($target) {
+  $vh-context: (1000 * 0.01) * 1px;
+  @return ($target/$vh-context) * 1vh;
+}
+
 .App {
   background-color: grey;
   text-align: center;
   width: 100%;
-  height: 1010px;
+  height: 100vh;
+}
+
+.main-container {
+  padding-top: 50px;
+  font-family: serif;
 }
 
 .component-container {
   display: inline-flex;
-  height: 200px;
-  width: 25%;
+  @media (min-width: 300px) {
+    height: 160px;
+    width: 250px;
+  }
+  @media (min-width: 550px) {
+    height: 280px;
+    width: 500px;
+  }
+  @media (min-width: 800px) {
+    height: 400px;
+    width: 720px;
+  }
+  height: get-vh(328px);
+  width: get-vw(800px);
   background-color: #1f212b;
   margin-top: 10px;
   border-radius: 15px;
@@ -16,20 +43,53 @@
 }
 
 .input {
-  width: 10%;
-  height: 20px;
+  @media (min-width: 300px) {
+    height: 20px;
+    width: 200px;
+    font-size: 10px;
+  }
+  @media (min-width: 550px) {
+    height: 30px;
+    width: 430px;
+    font-size: 15px;
+  }
+  @media (min-width: 800px) {
+    height: 40px;
+    width: 600px;
+    font-size: 18px;
+  }
+  width: get-vw(500px);
+  height: get-vh(50px);
   color: white;
   background-color: #1c1e26;
   border: 2px solid #1c1e26;
   border-radius: 25px;
-  font-size: 90%;
+  font-size: get-vh(30px);
+  padding-left: 15px;
 }
 
 .button {
+  @media (min-width: 300px) {
+    height: 25px;
+    width: 45px;
+    font-size: 10px;
+  }
+  @media (min-width: 550px) {
+    height: 35px;
+    width: 60px;
+    font-size: 14px;
+  }
+  @media (min-width: 800px) {
+    height: 50px;
+    width: 80px;
+    font-size: 19px;
+  }
   border-radius: 25px;
   color: white;
+  width: get-vw(200px);
   border-color: #0090d3;
+  border-width: 3px;
   background-color: #0090d3;
-  font-size: 90%;
-  margin-left: 5px;
+  margin-left: 10px;
+  letter-spacing: 0.5px;
 }

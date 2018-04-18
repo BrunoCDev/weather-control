@@ -1,39 +1,132 @@
 .weather-container {
-  width: 100%;
-  height: 100%; }
+  width: 20vw;
+  height: 32vh; }
+  @media (min-width: 300px) {
+    .weather-container {
+      height: 160px;
+      width: 250px; } }
+  @media (min-width: 550px) {
+    .weather-container {
+      height: 230px;
+      width: 25%; } }
+  @media (min-width: 800px) {
+    .weather-container {
+      height: 400px;
+      width: 180px; } }
 
 .weather-header {
-  height: 10%;
-  width: 100%; }
+  height: 3.5vh;
+  width: 20vw; }
+  @media (min-width: 300px) {
+    .weather-header {
+      height: 30px;
+      width: 62px; } }
+  @media (min-width: 550px) {
+    .weather-header {
+      height: 50px;
+      width: 120px; } }
+  @media (min-width: 800px) {
+    .weather-header {
+      height: 60px;
+      width: 180px; } }
 
 .weekday-text {
   color: #adb9c1;
-  font-size: 100%;
+  font-weight: bold;
+  letter-spacing: 0.5px;
   text-align: center;
   vertical-align: middle;
-  line-height: 0%; }
+  margin: 0px; }
+  @media (min-width: 300px) {
+    .weekday-text {
+      height: 30px;
+      font-size: 10px;
+      line-height: 30px; } }
+  @media (min-width: 550px) {
+    .weekday-text {
+      height: 50px;
+      width: 125px;
+      font-size: 15px;
+      line-height: 50px; } }
+  @media (min-width: 800px) {
+    .weekday-text {
+      height: 60px;
+      font-size: 20px;
+      line-height: 60px; } }
 
 .weather-body {
-  height: 84%;
+  height: 27.5vh;
   width: 100%;
   text-align: center;
   vertical-align: middle; }
+  @media (min-width: 300px) {
+    .weather-body {
+      height: 130px; } }
+  @media (min-width: 550px) {
+    .weather-body {
+      height: 230px; } }
+  @media (min-width: 800px) {
+    .weather-body {
+      height: 340px; } }
 
 .icon {
-  width: 60%;
-  height: 70px; }
+  width: 15vw;
+  height: auto; }
+  @media (min-width: 300px) {
+    .icon {
+      width: 40px; } }
+  @media (min-width: 550px) {
+    .icon {
+      width: 90px; } }
+  @media (min-width: 800px) {
+    .icon {
+      width: 150px; } }
 
 .description-text {
   color: #ffffff;
-  font-size: 65%; }
+  width: 100%;
+  height: 2vh;
+  font-size: 3vw;
+  letter-spacing: 0.7px; }
+  @media (min-width: 300px) {
+    .description-text {
+      height: 12px;
+      font-size: 9px; } }
+  @media (min-width: 550px) {
+    .description-text {
+      height: 20px;
+      font-size: 15px; } }
+  @media (min-width: 800px) {
+    .description-text {
+      height: 20px;
+      font-size: 22px; } }
 
 .temp-cel {
   color: #ffffff;
-  font-weight: bold;
-  font-size: 80%; }
+  font-size: 5vw;
+  letter-spacing: 1.5px; }
+  @media (min-width: 300px) {
+    .temp-cel {
+      font-size: 15px; } }
+  @media (min-width: 550px) {
+    .temp-cel {
+      font-size: 20px; } }
+  @media (min-width: 800px) {
+    .temp-cel {
+      font-size: 30px; } }
 
 .temp-fel {
   color: #ffffff;
   text-align: center;
-  font-size: 70%;
-  line-height: 0%; }
+  font-size: 3vw;
+  line-height: 0px;
+  letter-spacing: 0.5px; }
+  @media (min-width: 300px) {
+    .temp-fel {
+      font-size: 9px; } }
+  @media (min-width: 550px) {
+    .temp-fel {
+      font-size: 15px; } }
+  @media (min-width: 800px) {
+    .temp-fel {
+      font-size: 20px; } }

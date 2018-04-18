@@ -23,18 +23,23 @@ class App extends Component {
   }
 
   getWeather(city) {
-    this.setState({ citySearch: "", loading: true });
-    axios
-      .post("http://localhost:3005/api/get/weather", { city })
-      .then(response => {
-        const { data } = response;
-        this.parseWeatherInformation(data);
-        this.setState({
-          city: data.city,
-          loading: false
+    this.setState({ citySearch: "" });
+    if (city) {
+      axios
+        .post("http://localhost:3005/api/get/weather", { city })
+        .then(response => {
+          const { data } = response;
+          this.parseWeatherInformation(data);
+          this.setState({
+            city: data.city,
+            loading: false
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          alert("City not found!");
         });
-      })
-      .catch(console.log);
+    }
   }
 
   parseWeatherInformation(data) {

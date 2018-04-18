@@ -11,7 +11,9 @@ const getCurrentWeatherLondon = (req, res, next) => {
       `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}`
     )
     .then(response => res.status(200).json(response.data))
-    .catch(console.log);
+    .catch(error =>
+      res.status(error.response.data.cod).json(error.response.data.message)
+    );
 };
 
 module.exports = {

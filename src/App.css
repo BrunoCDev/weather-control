@@ -2,30 +2,79 @@
   background-color: grey;
   text-align: center;
   width: 100%;
-  height: 1010px; }
+  height: 100vh; }
+
+.main-container {
+  padding-top: 50px;
+  font-family: serif; }
 
 .component-container {
   display: inline-flex;
-  height: 200px;
-  width: 25%;
+  height: 32.8vh;
+  width: 80vw;
   background-color: #1f212b;
   margin-top: 10px;
   border-radius: 15px;
   border: 15px solid #1c1e26; }
+  @media (min-width: 300px) {
+    .component-container {
+      height: 160px;
+      width: 250px; } }
+  @media (min-width: 550px) {
+    .component-container {
+      height: 280px;
+      width: 500px; } }
+  @media (min-width: 800px) {
+    .component-container {
+      height: 400px;
+      width: 720px; } }
 
 .input {
-  width: 10%;
-  height: 20px;
+  width: 50vw;
+  height: 5vh;
   color: white;
   background-color: #1c1e26;
   border: 2px solid #1c1e26;
   border-radius: 25px;
-  font-size: 90%; }
+  font-size: 3vh;
+  padding-left: 15px; }
+  @media (min-width: 300px) {
+    .input {
+      height: 20px;
+      width: 200px;
+      font-size: 10px; } }
+  @media (min-width: 550px) {
+    .input {
+      height: 30px;
+      width: 430px;
+      font-size: 15px; } }
+  @media (min-width: 800px) {
+    .input {
+      height: 40px;
+      width: 600px;
+      font-size: 18px; } }
 
 .button {
   border-radius: 25px;
   color: white;
+  width: 20vw;
   border-color: #0090d3;
+  border-width: 3px;
   background-color: #0090d3;
-  font-size: 90%;
-  margin-left: 5px; }
+  margin-left: 10px;
+  letter-spacing: 0.5px; }
+  @media (min-width: 300px) {
+    .button {
+      height: 25px;
+      width: 45px;
+      font-size: 10px; } }
+  @media (min-width: 550px) {
+    .button {
+      height: 35px;
+      width: 60px;
+      font-size: 14px; } }
+  @media (min-width: 800px) {
+    .button {
+      height: 50px;
+      width: 80px;
+      font-size: 19px; } }

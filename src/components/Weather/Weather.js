@@ -13,10 +13,15 @@ class Weather extends Component {
         "Thursday",
         "Friday",
         "Saturday"
-      ]
+      ],
+      loading: true
     };
     this.changeColor = this.changeColor.bind(this);
     this.parseDescription = this.parseDescription.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ loading: false });
   }
 
   changeColor(i, str) {
@@ -46,9 +51,9 @@ class Weather extends Component {
     const data = this.props.data;
     const { icon, description } = data.info.weather[0];
     const { temp } = data.info.main;
-    const { week } = this.state;
+    const { week, loading } = this.state;
     const { index } = this.props;
-    return (
+    return !loading ? (
       <div
         className="weather-container"
         style={{ backgroundColor: this.changeColor(index, "header") }}
@@ -87,7 +92,7 @@ class Weather extends Component {
           </div>
         </div>
       </div>
-    );
+    ) : null;
   }
 }
 
