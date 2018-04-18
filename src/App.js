@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import "./App.css";
-
 import axios from "axios";
 import moment from "moment";
 
-import Weather from "./components/Weather/Weather";
+import Weather from "./components/Weather";
+import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: {},
+      data: [],
       city: "",
       citySearch: "",
       loading: true
@@ -31,46 +30,39 @@ class App extends Component {
     if (city) {
       axios
         .get(`http://localhost:3005/api/get/${city}`)
-        .then(response => {
-          const { data } = response;
-          this.parseWeatherInformation(data);
+        .then(({ data: { city, list } }) => {
           this.setState({
-            city: data.city,
+            data: this.parseWeatherInformation(list),
+            city,
             loading: false
           });
         })
-        .catch(error => {
-          console.log(error);
-          alert("Please provide a valid city!");
-        });
+        .catch(() => alert("Please provide a valid city!"));
     }
   }
 
   // Parses the information into the "data" object in state
-  // so the information is seperated by day.
-  parseWeatherInformation(response) {
-    response.list.map((info, i) => {
-      if (response.list.length - 1 !== i) {
-        const data = info.dt_txt.split(" ");
-        if (i === 0) {
-          this.setState({
-            data: [{ info, weekDay: moment(data[0]).day() }]
-          });
-        } else {
-          if (this.state.data.length !== 4) {
-            const lastData = this.state.data[0].info.dt_txt.split(" ");
-            if (data[1] === lastData[1]) {
-              this.setState(prevState => ({
-                data: [
-                  ...prevState.data,
-                  { info, weekDay: moment(data[0]).day() }
-                ]
-              }));
-            }
+  // so the information is separated by day.
+  parseWeatherInformation(list) {
+    const finalData = [];
+
+    list.map((info, i) => {
+      const needsMoreDates = finalData.length !== 4;
+      const [date, hour] = info.dt_txt.split(" ");
+
+      if (i === 0) finalData.push({ info, weekDay: moment(date).day() });
+      else {
+        if (needsMoreDates) {
+          const [_, firstHour] = finalData[0].info.dt_txt.split(" ");
+
+          if (hour === firstHour) {
+            finalData.push({ info, weekDay: moment(date).day() });
           }
         }
       }
     });
+
+    return finalData;
   }
 
   // Enables the user to press Enter instead of having to click "Find".
@@ -83,16 +75,17 @@ class App extends Component {
   render() {
     // Object destructuring for shorthand.
     const { city, citySearch, data, loading } = this.state;
+    const placeholder = `${city.name}, ${city.country}`;
     return (
       <div className="App">
-        {!loading ? (
+        {!loading && (
           <div className="main-container">
             <div className="title-container">
               <input
                 className="input"
                 type="text"
                 value={citySearch}
-                placeholder={`${city.name}, ${city.country}`}
+                placeholder={placeholder}
                 onChange={e => this.setState({ citySearch: e.target.value })}
                 onKeyPress={e => this.handleKeyPress(e)}
               />
@@ -109,7 +102,7 @@ class App extends Component {
               })}
             </div>
           </div>
-        ) : null}
+        )}
       </div>
     );
   }

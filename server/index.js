@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const { json } = require("body-parser");
 
+// Import controller
 const mc = require("./mainController");
 
 // Declare the port in which the server will be run

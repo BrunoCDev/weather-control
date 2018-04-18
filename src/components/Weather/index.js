@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Weather.css";
+import "./index.css";
 
 class Weather extends Component {
   constructor(props) {
@@ -74,46 +74,48 @@ class Weather extends Component {
 
     // Conditional Render so the component changes the displayed information after
     // the information changes.
-    return !loading ? (
-      <div
-        className="weather-container"
-        style={{ backgroundColor: this.changeColor(index, "header") }}
-      >
+    return (
+      !loading && (
         <div
-          className="weather-header"
+          className="weather-container"
           style={{ backgroundColor: this.changeColor(index, "header") }}
         >
-          <p className="weekday-text">
-            {index === 0
-              ? "Today " + day[2]
-              : week[data.weekDay] + ` ${day[2]}`}
-          </p>
-        </div>
-        <div
-          className="weather-body"
-          style={{ backgroundColor: this.changeColor(index, "body") }}
-        >
-          <div>
-            <img
-              className="icon"
-              src={`http://openweathermap.org/img/w/${icon}.png`}
-              alt="Weather"
-            />
-          </div>
-          <div>
-            <p className="description-text">
-              {this.parseDescription(description)}
+          <div
+            className="weather-header"
+            style={{ backgroundColor: this.changeColor(index, "header") }}
+          >
+            <p className="weekday-text">
+              {index === 0
+                ? "Today " + day[2]
+                : week[data.weekDay] + ` ${day[2]}`}
             </p>
           </div>
-          <div>
-            <p className="temp-cel">{this.parseTemp(temp, "C")}</p>
-          </div>
-          <div className="temp-fel-container">
-            <p className="temp-fel">{this.parseTemp(temp, "F")}</p>
+          <div
+            className="weather-body"
+            style={{ backgroundColor: this.changeColor(index, "body") }}
+          >
+            <div>
+              <img
+                className="icon"
+                src={`http://openweathermap.org/img/w/${icon}.png`}
+                alt="Weather"
+              />
+            </div>
+            <div>
+              <p className="description-text">
+                {this.parseDescription(description)}
+              </p>
+            </div>
+            <div>
+              <p className="temp-cel">{this.parseTemp(temp, "C")}</p>
+            </div>
+            <div className="temp-fel-container">
+              <p className="temp-fel">{this.parseTemp(temp, "F")}</p>
+            </div>
           </div>
         </div>
-      </div>
-    ) : null;
+      )
+    );
   }
 }
 

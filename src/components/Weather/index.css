@@ -11,7 +11,7 @@
       width: 25%; } }
   @media (min-width: 800px) {
     .weather-container {
-      height: 400px;
+      height: 320px;
       width: 180px; } }
 
 .weather-header {
@@ -69,7 +69,7 @@
       height: 230px; } }
   @media (min-width: 800px) {
     .weather-body {
-      height: 340px; } }
+      height: 260px; } }
 
 .icon {
   width: 15vw;
@@ -79,10 +79,10 @@
       width: 40px; } }
   @media (min-width: 550px) {
     .icon {
-      width: 90px; } }
+      width: 80px; } }
   @media (min-width: 800px) {
     .icon {
-      width: 150px; } }
+      width: 80px; } }
 
 .description-text {
   color: #ffffff;

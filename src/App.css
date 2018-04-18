@@ -26,7 +26,7 @@
       width: 500px; } }
   @media (min-width: 800px) {
     .component-container {
-      height: 400px;
+      height: 320px;
       width: 720px; } }
 
 .input {
