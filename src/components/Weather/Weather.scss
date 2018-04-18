@@ -9,7 +9,7 @@
 }
 
 .weather-container {
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     height: 160px;
     width: 250px;
   }
@@ -26,7 +26,7 @@
 }
 
 .weather-header {
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     height: 30px;
     width: 62px;
   }
@@ -44,19 +44,21 @@
 
 .weekday-text {
   color: #adb9c1;
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     height: 30px;
+    width: 62px;
     font-size: 10px;
     line-height: 30px;
   }
   @media (min-width: 550px) {
     height: 50px;
-    width: 125px;
+    width: 120px;
     font-size: 15px;
     line-height: 50px;
   }
   @media (min-width: 800px) {
     height: 60px;
+    width: 180px;
     font-size: 20px;
     line-height: 60px;
   }
@@ -68,7 +70,7 @@
 }
 
 .weather-body {
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     height: 130px;
   }
   @media (min-width: 550px) {
@@ -84,7 +86,7 @@
 }
 
 .icon {
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     width: 40px;
   }
   @media (min-width: 550px) {
@@ -99,7 +101,7 @@
 
 .description-text {
   color: #ffffff;
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     height: 12px;
     font-size: 9px;
   }
@@ -119,7 +121,7 @@
 
 .temp-cel {
   color: #ffffff;
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     font-size: 15px;
   }
   @media (min-width: 550px) {
@@ -135,7 +137,7 @@
 .temp-fel {
   color: #ffffff;
   text-align: center;
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     font-size: 9px;
   }
   @media (min-width: 550px) {

@@ -24,6 +24,7 @@ class Weather extends Component {
     this.setState({ loading: false });
   }
 
+  // Changes the <div> color to create pattern
   changeColor(i, str) {
     if (i % 2 === 0 && str === "header") {
       return "#282936";
@@ -38,6 +39,7 @@ class Weather extends Component {
     }
   }
 
+  // Uppercases the first letter of the description
   parseDescription(description) {
     description = description.split(" ");
     const result = [];
@@ -48,11 +50,17 @@ class Weather extends Component {
   }
 
   render() {
+    // Object destructuring for shorthand
     const data = this.props.data;
     const { icon, description } = data.info.weather[0];
     const { temp } = data.info.main;
     const { week, loading } = this.state;
     const { index } = this.props;
+
+    // Gets the day number
+    const date = data.info.dt_txt.split(" ");
+    const day = date[0].split("-");
+
     return !loading ? (
       <div
         className="weather-container"
@@ -63,7 +71,9 @@ class Weather extends Component {
           style={{ backgroundColor: this.changeColor(index, "header") }}
         >
           <p className="weekday-text">
-            {index === 0 ? "Today" : week[data.weekDay]}
+            {index === 0
+              ? "Today " + day[2]
+              : week[data.weekDay] + ` ${day[2]}`}
           </p>
         </div>
         <div

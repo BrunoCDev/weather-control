@@ -22,7 +22,7 @@
 
 .component-container {
   display: inline-flex;
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     height: 160px;
     width: 250px;
   }
@@ -43,7 +43,7 @@
 }
 
 .input {
-  @media (min-width: 300px) {
+  @media (min-width: 0px) {
     height: 20px;
     width: 200px;
     font-size: 10px;
@@ -58,8 +58,6 @@
     width: 600px;
     font-size: 18px;
   }
-  width: get-vw(500px);
-  height: get-vh(50px);
   color: white;
   background-color: #1c1e26;
   border: 2px solid #1c1e26;
@@ -69,7 +67,10 @@
 }
 
 .button {
-  @media (min-width: 300px) {
+  @media (max-width: 280px) {
+    margin-left: 0px;
+  }
+  @media (min-width: 0px) {
     height: 25px;
     width: 45px;
     font-size: 10px;
@@ -86,7 +87,6 @@
   }
   border-radius: 25px;
   color: white;
-  width: get-vw(200px);
   border-color: #0090d3;
   border-width: 3px;
   background-color: #0090d3;
