@@ -1,32 +1,29 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
-import ScrollArea from "react-scrollbar";
+// import ScrollArea from "react-scrollbar";
 import moment from "moment";
+
+import Weather from "./components/Weather/Weather";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      city: "London",
       date: {},
-      loading: true,
-      week: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ]
+      loading: true
     };
     this.parseWeatherInformation = this.parseWeatherInformation.bind(this);
+    this.getWeather = this.getWeather.bind(this);
   }
 
   componentDidMount() {
+    this.getWeather("London");
+  }
+
+  getWeather(city) {
     axios
-      .post("http://localhost:3005/api/get/london", { city: this.state.city })
+      .post("http://localhost:3005/api/get/weather", { city })
       .then(response => {
         const { data } = response;
         this.parseWeatherInformation(data);
@@ -69,41 +66,45 @@ class App extends Component {
     return (
       <div className="App">
         {!this.state.loading ? (
-          <div className="main-container">
+          <div>
             <div className="title-container">
               <strong className="title">
                 {city.name}, {city.country}
               </strong>
             </div>
-            <ScrollArea
+            {/* <ScrollArea
               className="area"
               contentClassName="content"
               speed={0.8}
               vertical={false}
-            >
-              {this.state.date.map((info, i) => {
-                const el = info.info;
-                const date = el.dt_txt.split(" ");
-                const time = date[1].slice(0, 5);
+            > */}
+            {/* {this.state.date.map((info, i) => {
+              const el = info.info;
+              const date = el.dt_txt.split(" ");
+              const time = date[1].slice(0, 5);
+              return (
+                <div key={i} className="instance-container">
+                  <p className="date">{week[info.weekDay]}</p>
+                  <p className="time"> {time}</p>
+                  <img
+                    className="icon"
+                    src={`http://openweathermap.org/img/w/${
+                      el.weather[0].icon
+                    }.png`}
+                    alt={el.weather[0].main}
+                  />
+                  <p className="description">{el.weather[0].description}</p>
+                  <p className="temp">{Math.round(el.main.temp - 273.15)}°C </p>
+                </div>
+              );
+            })} */}
+            <div className="component-container">
+              {this.state.date.map((el, i) => {
                 return (
-                  <div key={i} className="instance-container">
-                    <p className="date">{week[info.weekDay]}</p>
-                    <p className="time"> {time}</p>
-                    <img
-                      className="icon"
-                      src={`http://openweathermap.org/img/w/${
-                        el.weather[0].icon
-                      }.png`}
-                      alt={el.weather[0].main}
-                    />
-                    <p className="description">{el.weather[0].description}</p>
-                    <p className="temp">
-                      {Math.round(el.main.temp - 273.15)}°C{" "}
-                    </p>
-                  </div>
+                  <Weather className="weather-component" key={i} data={el} />
                 );
               })}
-            </ScrollArea>
+            </div>
           </div>
         ) : null}
       </div>
