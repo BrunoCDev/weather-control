@@ -16,6 +16,7 @@ class Weather extends Component {
       ]
     };
     this.changeColor = this.changeColor.bind(this);
+    this.parseDescription = this.parseDescription.bind(this);
   }
 
   changeColor(i, str) {
@@ -30,6 +31,15 @@ class Weather extends Component {
     } else {
       return "#222530";
     }
+  }
+
+  parseDescription(description) {
+    description = description.split(" ");
+    const result = [];
+    description.map(el => {
+      result.push(el[0].toUpperCase() + el.slice(1, el.length));
+    });
+    return result.join(" ");
   }
 
   render() {
@@ -63,7 +73,9 @@ class Weather extends Component {
             />
           </div>
           <div>
-            <p className="description-text">{description}</p>
+            <p className="description-text">
+              {this.parseDescription(description)}
+            </p>
           </div>
           <div>
             <p className="temp-cel">{Math.round(temp - 273.15)}°C</p>
