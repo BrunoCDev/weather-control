@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
-// import ScrollArea from "react-scrollbar";
 import moment from "moment";
 
 import Weather from "./components/Weather/Weather";
@@ -11,6 +10,8 @@ class App extends Component {
     super();
     this.state = {
       date: {},
+      city: "",
+      citySearch: "",
       loading: true
     };
     this.parseWeatherInformation = this.parseWeatherInformation.bind(this);
@@ -60,44 +61,28 @@ class App extends Component {
     });
   }
 
+  handleKeyPress(event) {
+    if (event.key === "Enter") {
+      this.getWeather(this.state.citySearch);
+      this.setState({ citySearch: "" });
+    }
+  }
+
   render() {
     const { city, week } = this.state;
-    console.log(this.state);
     return (
       <div className="App">
         {!this.state.loading ? (
           <div className="main-container">
             <div className="title-container">
-              <strong className="title">
-                {city.name}, {city.country}
-              </strong>
+              <input
+                type="text"
+                value={this.state.citySearch}
+                placeholder={`${city.name}, ${city.country}`}
+                onChange={e => this.setState({ citySearch: e.target.value })}
+                onKeyPress={e => this.handleKeyPress(e)}
+              />
             </div>
-            {/* <ScrollArea
-              className="area"
-              contentClassName="content"
-              speed={0.8}
-              vertical={false}
-            > */}
-            {/* {this.state.date.map((info, i) => {
-              const el = info.info;
-              const date = el.dt_txt.split(" ");
-              const time = date[1].slice(0, 5);
-              return (
-                <div key={i} className="instance-container">
-                  <p className="date">{week[info.weekDay]}</p>
-                  <p className="time"> {time}</p>
-                  <img
-                    className="icon"
-                    src={`http://openweathermap.org/img/w/${
-                      el.weather[0].icon
-                    }.png`}
-                    alt={el.weather[0].main}
-                  />
-                  <p className="description">{el.weather[0].description}</p>
-                  <p className="temp">{Math.round(el.main.temp - 273.15)}°C </p>
-                </div>
-              );
-            })} */}
             <div className="component-container">
               {this.state.date.map((el, i) => {
                 return <Weather key={i} data={el} index={i} />;
