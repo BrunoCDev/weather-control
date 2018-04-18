@@ -1,8 +1,11 @@
 .App {
-  width: 800px;
   text-align: center;
+  width: 50%;
+  height: 500px;
 }
+
 .component-container {
   display: inline-flex;
-  justify-content: space-between;
+  height: 130px;
+  background-color: #1f212b;
 }

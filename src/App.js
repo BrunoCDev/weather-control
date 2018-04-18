@@ -66,7 +66,7 @@ class App extends Component {
     return (
       <div className="App">
         {!this.state.loading ? (
-          <div>
+          <div className="main-container">
             <div className="title-container">
               <strong className="title">
                 {city.name}, {city.country}
@@ -100,9 +100,7 @@ class App extends Component {
             })} */}
             <div className="component-container">
               {this.state.date.map((el, i) => {
-                return (
-                  <Weather className="weather-component" key={i} data={el} />
-                );
+                return <Weather key={i} data={el} index={i} />;
               })}
             </div>
           </div>
