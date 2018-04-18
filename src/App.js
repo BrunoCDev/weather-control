@@ -23,6 +23,7 @@ class App extends Component {
   }
 
   getWeather(city) {
+    this.setState({ citySearch: "", loading: true });
     axios
       .post("http://localhost:3005/api/get/weather", { city })
       .then(response => {
@@ -64,24 +65,30 @@ class App extends Component {
   handleKeyPress(event) {
     if (event.key === "Enter") {
       this.getWeather(this.state.citySearch);
-      this.setState({ citySearch: "" });
     }
   }
 
   render() {
-    const { city, week } = this.state;
+    const { city } = this.state;
     return (
       <div className="App">
         {!this.state.loading ? (
           <div className="main-container">
             <div className="title-container">
               <input
+                className="input"
                 type="text"
                 value={this.state.citySearch}
                 placeholder={`${city.name}, ${city.country}`}
                 onChange={e => this.setState({ citySearch: e.target.value })}
                 onKeyPress={e => this.handleKeyPress(e)}
               />
+              <button
+                className="button"
+                onClick={() => this.getWeather(this.state.citySearch)}
+              >
+                Find
+              </button>
             </div>
             <div className="component-container">
               {this.state.date.map((el, i) => {

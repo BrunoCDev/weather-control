@@ -1,12 +1,17 @@
+.weather-container {
+  width: 100%;
+  height: 100%; }
+
 .weather-header {
   height: 10%;
   width: 100%; }
 
 .weekday-text {
   color: #adb9c1;
-  font-size: 50%;
+  font-size: 100%;
   text-align: center;
-  vertical-align: middle; }
+  vertical-align: middle;
+  line-height: 0%; }
 
 .weather-body {
   height: 84%;
@@ -15,19 +20,20 @@
   vertical-align: middle; }
 
 .icon {
-  margin-top: 10%; }
+  width: 60%;
+  height: 70px; }
 
 .description-text {
   color: #ffffff;
-  font-size: 30%; }
+  font-size: 90%; }
 
 .temp-cel {
   color: #ffffff;
   font-weight: bold;
-  font-size: 45%; }
+  font-size: 80%; }
 
 .temp-fel {
   color: #ffffff;
   text-align: center;
-  font-size: 25%;
-  line-height: 10%; }
+  font-size: 70%;
+  line-height: 0%; }

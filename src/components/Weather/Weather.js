@@ -33,7 +33,6 @@ class Weather extends Component {
   }
 
   render() {
-    console.log(this.props);
     const data = this.props.data;
     const { icon, description } = data.info.weather[0];
     const { temp } = data.info.main;
