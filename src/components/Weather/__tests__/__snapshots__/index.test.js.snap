@@ -1,9 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Weather/> Should render an <img> tag with className 1`] = `
-ShallowWrapper {
+ReactWrapper {
   "length": 1,
-  Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <img
     alt="Weather"
     className="icon"
@@ -15,8 +14,12 @@ ShallowWrapper {
     "simulateEvent": [Function],
     "unmount": [Function],
   },
+  Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__node__): Object {
-    "instance": null,
+    "instance": <img
+      class="icon"
+      alt="Weather"
+/>,
     "key": undefined,
     "nodeType": "host",
     "props": Object {
@@ -24,12 +27,17 @@ ShallowWrapper {
       "className": "icon",
     },
     "ref": null,
-    "rendered": null,
+    "rendered": Array [
+      undefined,
+    ],
     "type": "img",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
-      "instance": null,
+      "instance": <img
+        class="icon"
+        alt="Weather"
+/>,
       "key": undefined,
       "nodeType": "host",
       "props": Object {
@@ -37,7 +45,9 @@ ShallowWrapper {
         "className": "icon",
       },
       "ref": null,
-      "rendered": null,
+      "rendered": Array [
+        undefined,
+      ],
       "type": "img",
     },
   ],
@@ -52,9 +62,8 @@ ShallowWrapper {
 `;
 
 exports[`Renders components without crashing 1`] = `
-ShallowWrapper {
+ReactWrapper {
   "length": 1,
-  Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <div>
     Test
 </div>,
@@ -65,27 +74,36 @@ ShallowWrapper {
     "simulateEvent": [Function],
     "unmount": [Function],
   },
+  Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__node__): Object {
-    "instance": null,
+    "instance": <div>
+      Test
+</div>,
     "key": undefined,
     "nodeType": "host",
     "props": Object {
       "children": "Test",
     },
     "ref": null,
-    "rendered": "Test",
+    "rendered": Array [
+      "Test",
+    ],
     "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
-      "instance": null,
+      "instance": <div>
+        Test
+</div>,
       "key": undefined,
       "nodeType": "host",
       "props": Object {
         "children": "Test",
       },
       "ref": null,
-      "rendered": "Test",
+      "rendered": Array [
+        "Test",
+      ],
       "type": "div",
     },
   ],
