@@ -72,8 +72,8 @@ class Weather extends Component {
     const date = data.info.dt_txt.split(" ");
     const day = date[0].split("-");
 
-    // Conditional Render so the component changes the displayed information after
-    // the information changes.
+    // Conditional Render depending on loading so the component changes
+    // the displayed information.
     return (
       !loading && (
         <div

@@ -20,6 +20,12 @@ describe("<Weather/>", () => {
     expect(renderedComponent.contains(children)).toEqual(true);
   });
 
+  it("Should render an <img> tag with className", () => {
+    const renderedComponent = shallow(<img className="icon" alt="Weather" />);
+    expect(renderedComponent.find("img").hasClass("icon")).toEqual(true);
+    expect(renderedComponent).toMatchSnapshot();
+  });
+
   it("Should adopt the className", () => {
     const renderedComponent = shallow(<div className="weather-container" />);
     expect(renderedComponent.find("div").hasClass("weather-container")).toEqual(

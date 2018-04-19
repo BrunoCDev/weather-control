@@ -24,6 +24,12 @@ describe("<App/>", () => {
     expect(renderedComponent.contains(children)).toEqual(true);
   });
 
+  it("Should render nested components", () => {
+    const children = <div />;
+    const renderedComponent = shallow(<div>{children}</div>);
+    expect(renderedComponent.contains(children)).toEqual(true);
+  });
+
   it("Should adopt the className", () => {
     const renderedComponent = shallow(<div className="App" />);
     expect(renderedComponent.find("div").hasClass("App")).toEqual(true);

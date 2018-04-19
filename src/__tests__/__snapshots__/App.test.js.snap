@@ -25,7 +25,7 @@ App {
         "_debugOwner": [Circular],
         "_debugSource": Object {
           "fileName": "/Users/Flavio/PersonalProjects/interview-tests/weather-control/src/App.js",
-          "lineNumber": 80,
+          "lineNumber": 84,
         },
         "alternate": FiberNode {
           "_debugID": 5,
@@ -33,7 +33,7 @@ App {
           "_debugOwner": [Circular],
           "_debugSource": Object {
             "fileName": "/Users/Flavio/PersonalProjects/interview-tests/weather-control/src/App.js",
-            "lineNumber": 80,
+            "lineNumber": 84,
           },
           "alternate": [Circular],
           "child": null,
@@ -220,7 +220,7 @@ App {
       "_debugOwner": [Circular],
       "_debugSource": Object {
         "fileName": "/Users/Flavio/PersonalProjects/interview-tests/weather-control/src/App.js",
-        "lineNumber": 80,
+        "lineNumber": 84,
       },
       "alternate": FiberNode {
         "_debugID": 5,
@@ -359,7 +359,7 @@ App {
         },
         "_debugSource": Object {
           "fileName": "/Users/Flavio/PersonalProjects/interview-tests/weather-control/src/App.js",
-          "lineNumber": 80,
+          "lineNumber": 84,
         },
         "alternate": [Circular],
         "child": null,
@@ -592,7 +592,7 @@ App {
             "_debugOwner": [Circular],
             "_debugSource": Object {
               "fileName": "/Users/Flavio/PersonalProjects/interview-tests/weather-control/src/App.js",
-              "lineNumber": 80,
+              "lineNumber": 84,
             },
             "alternate": FiberNode {
               "_debugID": 5,
@@ -600,7 +600,7 @@ App {
               "_debugOwner": [Circular],
               "_debugSource": Object {
                 "fileName": "/Users/Flavio/PersonalProjects/interview-tests/weather-control/src/App.js",
-                "lineNumber": 80,
+                "lineNumber": 84,
               },
               "alternate": [Circular],
               "child": null,
@@ -765,7 +765,7 @@ App {
               "_debugOwner": [Circular],
               "_debugSource": Object {
                 "fileName": "/Users/Flavio/PersonalProjects/interview-tests/weather-control/src/App.js",
-                "lineNumber": 80,
+                "lineNumber": 84,
               },
               "alternate": FiberNode {
                 "_debugID": 5,
@@ -773,7 +773,7 @@ App {
                 "_debugOwner": [Circular],
                 "_debugSource": Object {
                   "fileName": "/Users/Flavio/PersonalProjects/interview-tests/weather-control/src/App.js",
-                  "lineNumber": 80,
+                  "lineNumber": 84,
                 },
                 "alternate": [Circular],
                 "child": null,

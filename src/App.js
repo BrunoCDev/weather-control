@@ -26,7 +26,9 @@ class App extends Component {
   // Method that takes in a city name and makes an API call to get the information
   // from that specific city.
   getWeather(city) {
+    // Reset input after clicking "Find" button.
     this.setState({ citySearch: "" });
+
     if (city) {
       axios
         .get(`http://localhost:3005/api/get/${city}`)
@@ -41,7 +43,7 @@ class App extends Component {
     }
   }
 
-  // Parses the information into the "data" object in state
+  // Parses the information into the "finalData" array
   // so the information is separated by day.
   parseWeatherInformation(list) {
     const finalData = [];
@@ -50,18 +52,20 @@ class App extends Component {
       const needsMoreDates = finalData.length !== 4;
       const [date, hour] = info.dt_txt.split(" ");
 
-      if (i === 0) finalData.push({ info, weekDay: moment(date).day() });
-      else {
+      // Gets the weather info from the current day and pushes it to finalData array.
+      if (i === 0) {
+        finalData.push({ info, weekDay: moment(date).day() });
+      } else {
         if (needsMoreDates) {
           const [_, firstHour] = finalData[0].info.dt_txt.split(" ");
 
+          // Gets the weather info for the next day at the same hour as the first day.
           if (hour === firstHour) {
             finalData.push({ info, weekDay: moment(date).day() });
           }
         }
       }
     });
-
     return finalData;
   }
 
