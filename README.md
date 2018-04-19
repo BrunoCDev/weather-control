@@ -15,7 +15,7 @@ module.exports = {
 };
 ```
 
-## Useful Scripts
+## Scripts
 
 * To start the server, run "nodemon server" in the terminal, while in the projects root.
 * To start the App, run "yarn start", keep in mind that the server needs to be running
